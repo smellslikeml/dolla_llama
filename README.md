@@ -1,4 +1,4 @@
-# Dolla Llama: Streaming Chat Co-Pilot for Closing the Deal 📞
+# Dolla Llama: Real-Time Co-Pilot for Closing the Deal 📞
 
 <p align="center">
   <img src="assets/dolla_llama.png" alt="Dolla Llama" style="width:30%;height:30%">
