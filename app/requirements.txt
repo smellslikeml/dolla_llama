@@ -1,0 +1,5 @@
+openai
+guidance
+gradio
+sentence-transformers
+elasticsearch

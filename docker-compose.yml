@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.0
+    environment:
+      - "discovery.type=single-node"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+
+  llama:
+    image: ghcr.io/abetlen/llama-cpp-python:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models/:/models
+    environment:
+      - MODEL=/models/ggml-model-q4_0.bin
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+
+  scraper:
+    build:
+      context: ./scraper
+      dockerfile: Dockerfile
+    depends_on:
+      - elasticsearch
+    volumes:
+      - ./models/:/models
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+    restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+
+  app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    depends_on:
+      - elasticsearch
+      - scraper
+      - llama
+    devices:
+      - "/dev/snd:/dev/snd"
+    volumes:
+      - ./models/:/models
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      - LLAMA_URL=http://llama:8000
+    ports:
+      - "8090:8090"
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+
