@@ -1,7 +1,7 @@
 # Dolla Llama: Streaming Chat Co-Pilot for Closing the Deal 📞
 
 <p align="center">
-  <img src="assets/dolla_llama.png" alt="Dolla Llama">
+  <img src="assets/dolla_llama.png" alt="Dolla Llama" style="width:30%;height:30%">
 </p>
 
 This assistant uses an advanced example of RAG (Retrieval-Augmented Generation) implementation to live assist during sales calls. It can be used as an example for your application.
