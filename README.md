@@ -25,8 +25,11 @@ This demo assumes you have:
 - Familiarity with [RAG](https://stackoverflow.blog/2023/10/18/retrieval-augmented-generation-keeping-llms-relevant-and-current/) and its applications
 
 ### Setup
-Make sure to convert your Llama model with [llama.cpp](https://github.com/ggerganov/llama.cpp) for serving using these [instructions]().
-Simply launch with:
+Make sure to convert your Llama model to `gguf` format with [llama.cpp](https://github.com/ggerganov/llama.cpp) for serving using their instructions.
+Then save the model in a local directory named `models/` 
+
+
+Launch with:
 ```
 docker-compose up
 ```
