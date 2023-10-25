@@ -4,7 +4,7 @@
   <img src="assets/dolla_llama.png" alt="Dolla Llama" style="width:30%;height:30%">
 </p>
 
-This assistant implements speech-to-text (STT) and retrieval-augmented generation (RAG) to assist live sales calls. 
+Implements speech-to-text (STT) and retrieval-augmented generation (RAG) to assist live sales calls. 
 
 ## 🌟 Features:
 - STT with Whisper.cpp and llama.cpp for your LLM
@@ -24,6 +24,8 @@ This demo assumes you have:
 - [docker](https://docs.docker.com/engine/install/) and [docker-compose](https://docs.docker.com/compose/install/) installed
 - Familiarity with [RAG](https://stackoverflow.blog/2023/10/18/retrieval-augmented-generation-keeping-llms-relevant-and-current/) and its applications
 
+### Setup
+Make sure to convert your Llama model with [llama.cpp](https://github.com/ggerganov/llama.cpp) for serving using these [instructions]().
 Simply launch with:
 ```
 docker-compose up
@@ -33,9 +35,21 @@ And navigate to `http://localhost:8090`
 
 ## Creating Custom Embeddings
 
+By fine-tuning with SentenceTransformers, we can generate text embeddings locally for matching with documents in our Elasticsearch index.
+
+The [scraper/main.py](scraper/main.py) script scrapes a list of sites to index. You can update the links in `scraper/config.json` 
+
 ## Indexing with ElasticSearch
 
+Using Elasticsearch, we can index and tag documents for filtering and customization of the relevance scoring.
+
+The [scraper/main.py](scarper/main.py) script also handles this after scraping. 
+
 ## Interface with Gradio
+
+With Gradio, you press a button to begin and read suggestions in the chatbox.
+
+The [app/app.py](app/app.py) contains the logic to run whisper for speech-to-text, run queries on the elasticsearch index, and launch the front-end. 
 
 ## Next Steps
 
