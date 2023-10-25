@@ -18,8 +18,7 @@ es = Elasticsearch(hosts=es_host)
 llama_host = os.environ.get("LLAMA_URL", "http://localhost:8000")
 
 
-model_path = "/models/embedding_model"
-model = SentenceTransformer(model_path)
+model = SentenceTransformer("paraphrase-distilroberta-base-v2")
 
 
 def embedding(text_input):
@@ -45,9 +44,9 @@ Respond with short, readable 10 word phrases to quickly prompt the conversation 
 program = guidance(prompt)
 
 cmd = [
-    "./stream",
+    "/whisper/tream",
     "-m",
-    "models/ggml-tiny.en-q5_0.bin",
+    "/whisper/models/ggml-tiny.en-q5_0.bin",
     "--step",
     "7680",
     "--length",
