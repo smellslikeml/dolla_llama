@@ -96,8 +96,6 @@ def process_audio(audio_chunk):
     idx = 0
     conversation_buffer = []
     output_text = ""
-    # TODO: remove, for test
-    stdout_data = "I need to organize patient records in my data lake"
     for line in stdout_data.splitlines():
         idx += 1
 
