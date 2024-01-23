@@ -1,5 +1,7 @@
 FROM ubuntu:20.04
 
+ARG DEBIAN_FRONTEND=noninteractive
+
 # Dependencies
 RUN apt-get update && apt-get install -y \
     git \
@@ -8,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     python3 \
     python3-pip \
+    libsdl2-dev \
     bash
 
 
@@ -20,6 +23,7 @@ RUN bash ./models/download-ggml-model.sh base.en
 
 # Build the main example
 RUN make
+RUN make stream
 
 # Add and run the Gradio app
 WORKDIR /app

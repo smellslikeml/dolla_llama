@@ -22,7 +22,7 @@ services:
     volumes:
       - ./models/:/models
     environment:
-      - MODEL=/models/ggml-model-q4_0.bin
+      - MODEL=/models/ggml-model-q4_0.gguf
     restart: "no"
     logging:
       driver: "json-file"

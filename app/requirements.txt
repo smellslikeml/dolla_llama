@@ -3,3 +3,4 @@ guidance
 gradio
 sentence-transformers
 elasticsearch
+llama-cpp-python
